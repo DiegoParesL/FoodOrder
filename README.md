@@ -9,7 +9,7 @@ Aplicación web para gestionar pedidos de comida. Desarrollada con Django (backe
 - Python 3.13.0
 - Node.js 22.16.0
 - npm 10.9.2
-- PostgreSQL (opcional) o SQLite
+- SQLite
 - Git
 
 ---
@@ -19,8 +19,8 @@ Aplicación web para gestionar pedidos de comida. Desarrollada con Django (backe
 ### 1. Clonar el repositorio
 
 ```
-git clone https://github.com/tu-usuario/food-order.git
-cd food-order
+git clone https://github.com/DiegoParesLopez/FoodOrder.git
+cd FoodOrder
 cd backend/
 python -m venv env
 source env/bin/activate  # en Windows: env\Scripts\activate
