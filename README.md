@@ -30,7 +30,7 @@ pip install -r requirements.txt
 ```
 python manage.py migrate
 ```
-# Crear superusuario (opcional)
+# Crear superusuario
 ```
 python manage.py createsuperuser
 ```
