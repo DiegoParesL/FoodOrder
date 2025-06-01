@@ -2,11 +2,16 @@ import { useEffect, useState,useRef } from 'react';
 
 
 
-function MealsList({ onClickMenu, cart, setCart, setPedidoEnviado }) {
+function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado }) {
   const [meals, setMeals] = useState([]);
-
-  
-
+  useEffect(() => {
+          if (pedidoEnviado) {
+            const timer = setTimeout(() => {
+              setPedidoEnviado(false);
+            }, 4000);
+            return () => clearTimeout(timer); // limpieza
+          }
+        }, [pedidoEnviado]);
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/meals/')
       .then(response => response.json())

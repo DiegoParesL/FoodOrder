@@ -17,11 +17,12 @@ function App() {
 
   return (
     <>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=0.6, user-scalable=yes"></meta>
       {display === "home" && <Home onClickMenu={handleClickMenu} />}
-      {display === "meals" && <MealsList onClickMenu={handleClickMenu} cart={cart} setCart={setCart} setPedidoEnviado={setPedidoEnviado} />}
+      {display === "meals" && <MealsList onClickMenu={handleClickMenu} cart={cart} setCart={setCart} pedidoEnviado={pedidoEnviado} setPedidoEnviado={setPedidoEnviado} />}
 
       {pedidoEnviado && (
-        <div style={{ backgroundColor: "#d4edda", color: "#155724", padding: "1rem", marginTop: "1rem" }}>
+        <div className='mensaje-exito'>
           Pedido enviado correctamente.
         </div>
       )}
