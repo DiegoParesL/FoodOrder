@@ -1,15 +1,45 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useRef } from 'react';
 
 
 
 function MealsList({ onClickMenu, cart, setCart, setPedidoEnviado }) {
   const [meals, setMeals] = useState([]);
 
+  
+
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/meals/')
       .then(response => response.json())
       .then(data => setMeals(data))
   }, []);
+  function añadirAlCarrito(meal) {
+    setCart(prevCart => {
+      const existente = prevCart.find(item => item.meal.id === meal.id);
+      if (existente) {
+        return prevCart.map(item =>
+          item.meal.id === meal.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [...prevCart, { meal, quantity: 1 }];
+      }
+    });
+  }
+  function reducirCantidad(mealId) {
+    setCart(prevCart =>
+      prevCart
+        .map(item =>
+          item.meal.id === mealId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter(item => item.quantity > 0)
+    );
+  }
+  function limpiarCarrito() {
+    setCart([]);
+  }
 
   function handleEnviarPedido() {
     if (cart.length === 0) {
@@ -24,6 +54,8 @@ function MealsList({ onClickMenu, cart, setCart, setPedidoEnviado }) {
         resumenPedido[item.id] = 1;
       }
     });
+    
+
     const pedidoFinal = cart.map(item => ({
       meal: item.id,
       quantity: item.quantity
@@ -46,42 +78,61 @@ function MealsList({ onClickMenu, cart, setCart, setPedidoEnviado }) {
       alert("No se pudo enviar el pedido.");
     });
   }
-
-
+  
+  let total=0
+  cart.forEach(item => { 
+    total +=item.meal.price * item.quantity
+  })
+  const botonRef =useRef(null);
+  const handleClickDiv = () =>{
+    if(botonRef.current){
+      botonRef.current.focus();
+    }
+  }
+  
   return (
-    <div>
-      <button onClick={() => onClickMenu("home")}>Volver al inicio</button>
+    <div className='base'>
+      <div className='meals'>
+        <button onClick={() => onClickMenu("home")}>Volver al inicio</button>
 
-      <h2>Comidas disponibles</h2>
-      <ul>
-        {meals.map(meal => (
-          <li key={meal.id}>
-            {meal.name} - {meal.price} €
-              <button onClick={() => {
-                const existing = cart.find(item => item.id === meal.id);
-                if (existing) {
-                  setCart(cart.map(item =>
-                    item.id === meal.id ? { ...item, quantity: item.quantity + 1 } : item
-                  ));
-                } else {
-                  setCart([...cart, { ...meal, quantity: 1 }]);
-                }}}>
-                Añadir
-              </button>
-          </li>
-        ))}
-      </ul>
-
-      <h3>Carrito</h3>
-      <ul>
-        {cart.map((item, index) => (
-          <li key={index}>
-            {item.name} - {item.price} € (x{item.quantity})
-          </li>
-        ))}
-      </ul>
-
-      <button onClick={handleEnviarPedido}>Enviar pedido</button>
+        <h2>FoodOrder</h2>
+        <ul className='meals-grid'>
+          {meals.map(meal => (
+            <li key={meal.id}>
+              <div className='plate' onClick={() =>añadirAlCarrito(meal)} role='button' tabIndex={0} onKeyDown={(e) => {if (e.key === 'Enter')añadirAlCarrito(meal);}}>
+                <button onClick={(e) => {e.stopPropagation(); añadirAlCarrito(meal)}} >
+                  <p>{meal.name} </p> 
+                  <i>{meal.price} €</i>
+                </button>
+              </div>
+              
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className='cart'>
+        <h3>Detalles del Pedido</h3>
+        <ul> 
+          {cart.map((item, index) => (
+            <li key={index}>
+              <div className='ticket'>
+                <div>
+                  <button onClick={() => reducirCantidad(item.meal.id)}>–</button>
+                  <p>{item.meal.name}</p>
+                </div>
+                <p>{item.quantity} x {item.meal.price} €</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div className='send'>
+          <p><strong>Total:</strong> {total.toFixed(2)} €</p>
+          <div>
+            <button onClick={limpiarCarrito}>Vaciar carrito</button>
+            <button onClick={handleEnviarPedido}>Enviar pedido</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

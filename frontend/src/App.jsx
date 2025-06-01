@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import MealsList from './components/MealsList';
 import Home from './components/Home';
+import "./App.css"
 
 function App() {
   const [display, setDisplay] = useState("home");
@@ -16,8 +17,6 @@ function App() {
 
   return (
     <>
-      
-
       {display === "home" && <Home onClickMenu={handleClickMenu} />}
       {display === "meals" && <MealsList onClickMenu={handleClickMenu} cart={cart} setCart={setCart} setPedidoEnviado={setPedidoEnviado} />}
 
