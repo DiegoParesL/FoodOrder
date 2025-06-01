@@ -1,0 +1,58 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.idea/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+static_root/
+local_settings.py
+
+# Environment variables
+.env
+
+# VS Code settings
+.vscode/
+
+# Migrations
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Mac OS and system files
+.DS_Store
+Thumbs.db
+
+# Coverage and testing
+htmlcov/
+coverage.xml
+*.cover
+*.py,cover
+.cache
+nosetests.xml
+test-results.xml
+junit-*.xml
+
+# pipenv
+Pipfile.lock
+
+# pyright/mypy
+.mypy_cache/
+.pyright/
+
+# Deployment
+*.pid
+*.seed
