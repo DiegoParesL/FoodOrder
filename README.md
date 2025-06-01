@@ -6,9 +6,9 @@ Aplicación web para gestionar pedidos de comida. Desarrollada con Django (backe
 
 ## Requisitos
 
-- Python 3.10+
-- Node.js 18+
-- npm o yarn
+- Python 3.13.0
+- Node.js 22.16.0
+- npm 10.9.2
 - PostgreSQL (opcional) o SQLite
 - Git
 
