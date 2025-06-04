@@ -1,8 +1,6 @@
 import { useEffect, useState,useRef } from 'react';
 
-
-
-function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado }) {
+function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado, user }) {
   const [meals, setMeals] = useState([]);
   useEffect(() => {
           if (pedidoEnviado) {
@@ -13,7 +11,9 @@ function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado
           }
         }, [pedidoEnviado]);
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/meals/')
+    fetch('http://127.0.0.1:8000/api/meals/meal',{
+      credentials:'include'
+    })
       .then(response => response.json())
       .then(data => setMeals(data))
   }, []);
@@ -46,54 +46,59 @@ function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado
     setCart([]);
   }
 
-  function handleEnviarPedido() {
+  async function handleEnviarPedido() {
+    if (!user) {
+      alert("Debes iniciar sesión para enviar un pedido.");
+      return;
+    }
     if (cart.length === 0) {
       alert("El carrito está vacío.");
       return;
     }
-    const resumenPedido = {};
-    cart.forEach(item => {
-      if (resumenPedido[item.id]) {
-        resumenPedido[item.id] += 1;
-      } else {
-        resumenPedido[item.id] = 1;
-      }
-    });
-    
 
-    const pedidoFinal = cart.map(item => ({
-      meal: item.id,
-      quantity: item.quantity
-    }));
-    fetch('http://127.0.0.1:8000/api/orders/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ items: pedidoFinal })
-  })
-    .then(response => {
-      if (response.ok) {
-        setPedidoEnviado(true);
-        setCart([]);
-      } else {
-        throw new Error("Error al enviar pedido");
-      }
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      alert("No se pudo enviar el pedido.");
+    // Obtener token CSRF
+    const csrfRes = await fetch("http://127.0.0.1:8000/api/auth/csrf/", {
+      credentials: "include",
     });
+    const csrfData = await csrfRes.json();
+
+    // Preparar pedido
+    const pedidoFinal = {
+      items: cart.map(item => ({
+      meal_id: item.meal.id,
+      quantity: item.quantity
+    }))
+};
+
+
+    // Enviar a la API
+    fetch("http://127.0.0.1:8000/api/orders/order/", {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfData.csrfToken,
+      },
+      body: JSON.stringify(pedidoFinal), 
+    })
+      .then(response => {
+        if (response.ok) {
+          setPedidoEnviado(true);
+          setCart([]);
+        } else {
+          throw new Error("Error al enviar pedido");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("No se pudo enviar el pedido.");
+      });
   }
   
   let total=0
   cart.forEach(item => { 
     total +=item.meal.price * item.quantity
   })
-  const botonRef =useRef(null);
-  const handleClickDiv = () =>{
-    if(botonRef.current){
-      botonRef.current.focus();
-    }
-  }
   
   return (
     <div className='base'>

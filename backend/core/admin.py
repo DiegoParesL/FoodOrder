@@ -5,11 +5,14 @@ class OrderItemInline(admin.TabularInline):  # También puedes usar StackedInlin
     model = OrderItem
     extra = 0
 
+
+@admin.register(OrderItem)
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ["id", "order", "meal", "quantity"] 
+
+@admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    inlines = [OrderItemInline]
-    list_display = ['id', 'created_at']
+    list_display = ['id', 'user', 'created_at']
     readonly_fields = ['created_at']
 
 admin.site.register(Meal)
-admin.site.register(Order, OrderAdmin)
-admin.site.register(OrderItem)

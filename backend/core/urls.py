@@ -1,7 +1,7 @@
+from django.contrib import admin
 from django.urls import path
-from .views import MealListView, OrderCreateView
+from .api import api 
 
 urlpatterns = [
-    path('api/meals/', MealListView.as_view(), name='meals'),
-    path('api/orders/', OrderCreateView.as_view(), name='orders'),
+    path("api/", api.urls),
 ]
