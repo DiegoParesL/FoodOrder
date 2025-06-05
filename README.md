@@ -54,7 +54,7 @@ Para ver el frontend copiamos esa carpeta dist, estamos ubicados en el apartado 
   Para el sites-available hace falta un archivo foodorder-frontend.conf, con algo similar a la siguiente estructura
 ```
   <VirtualHost *:80>
-      ServerName dpareslopez.ieti.site
+      ServerName TuUrl.tuDominio
   
       DocumentRoot /var/www/foodorder-frontend
   
