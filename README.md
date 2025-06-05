@@ -80,19 +80,22 @@ sudo a2ensite foodorder-frontend.conf
 ```
 sudo service apache2 restart
 ```
-# Ahora vamos a hacer el comando de: sudo nano /etc/hosts
-Y dentro vamos a tener una estructura similar a
+# Siguiente paso
+Ahora vamos a hacer el comando de: sudo nano /etc/hosts
+Y dentro vamos a tener una estructura similar a:
 ```
 127.0.0.1       localhost
 # --- BEGIN PVE ---
 192.168.XXX.XX tuSitioWeb.TuDominio
 # --- END PVE ---
 ```
-# AHORA SI vamos al FoodOrder/frontend y hacemos el siguiente comando para pasar los archivos de /dist/ a /var/www/foodorder-frontend/
+# AHORA SI 
+Vamos al FoodOrder/frontend y hacemos el siguiente comando para pasar los archivos de /dist/ a /var/www/foodorder-frontend/
 ```
 sudo cp -r ./dist/* /var/www/foodorder-frontend/
 ```
- # Seguidamente vamos a activar el gunicorn en primer plano para ver que funcione
+# Activar el gunicorn
+  Seguidamente vamos a activar el gunicorn (para el django que funcione) en primer plano para ver que todo esté en orden, y luego ingresamos la pagina web en el buscador
  ```
 gunicorn backend.wsgi:application --bind 127.0.0.1:8000
 ```
@@ -100,4 +103,5 @@ gunicorn backend.wsgi:application --bind 127.0.0.1:8000
 ```
 gunicorn backend.wsgi:application --bind 127.0.0.1:8000 &
 ```
-# E voilà, tendras un servidor con la App de FoodOrder!!
+# E voilà
+Tendras un servidor con la App de FoodOrder!!
