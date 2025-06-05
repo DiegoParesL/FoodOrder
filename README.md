@@ -91,6 +91,7 @@ Y dentro vamos a tener una estructura similar a:
 ```
 # AHORA SI 
 Vamos al FoodOrder/frontend y hacemos el siguiente comando para pasar los archivos de /dist/ a /var/www/foodorder-frontend/
+(estando en la carpeta de (/FoodOrder/frontend/)
 ```
 sudo cp -r ./dist/* /var/www/foodorder-frontend/
 ```
