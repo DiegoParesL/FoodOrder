@@ -94,6 +94,7 @@ function LoginPage({ onClickMenu, setUser }) {
   return (
     <div className="formulario">
       <h2>Iniciar Sesión</h2>
+      <button onClick={() => onClickMenu("home")}>Volver</button>
       <form onSubmit={handleLogin}>
         <div>
           <label htmlFor="user">Usuario:</label>
@@ -122,7 +123,6 @@ function LoginPage({ onClickMenu, setUser }) {
       </form>
       {mensaje && <p className="mensaje-error">{mensaje}</p>} 
       {!csrfToken && <p className="loading-message">Cargando token de seguridad...</p>}
-      <button onClick={() => onClickMenu("home")}>Volver</button>
     </div>
   );
 }

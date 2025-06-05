@@ -81,6 +81,7 @@ function RegisterPage({ onClickMenu }) {
   return (
     <div className="formulario">
       <h2>Registro</h2>
+      <button onClick={() => onClickMenu("home")}>Volver</button>
       <form onSubmit={handleRegister}>
         <div>
           <label htmlFor="name">Usuario</label>
@@ -107,7 +108,6 @@ function RegisterPage({ onClickMenu }) {
         
       </form>
       {mensaje && <p>{mensaje}</p>}
-      <button onClick={() => onClickMenu("home")}>Volver</button>
     </div>
   );
 }
