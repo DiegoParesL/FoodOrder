@@ -1,7 +1,6 @@
 /* estilos Generales*/
 *{
     font-size: 1.1rem;
-    font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
     user-select: none;
 }
 .plate > button > p{
@@ -31,6 +30,14 @@ body {
     flex-direction: column;
     align-items: center;
     height: auto;
+}
+.home > h1{
+    padding: 10px 3vw;
+    background-color: white;
+    margin-top: 3vh;
+    border-radius: 16px / 10px;
+    border: 1px solid black;
+    font-size:1.5rem;
 }
 .home > button{
     margin-top: 6%;
@@ -77,9 +84,11 @@ body {
 .plate>button>i {
     font-weight: bold;
 }
-.plate:hover{
-    rotate: -6deg;
-    transition: rotate 0.4s ease ;
+@media (hover: hover) {
+	.plate:hover{
+	    rotate: -6deg;
+	    transition: rotate 0.4s ease ;
+	}
 }
 .plate:not(:hover){
     rotate: 0deg;
@@ -123,7 +132,8 @@ body {
     color: rgb(0, 162, 255);
     text-shadow: 1px 1px 1px black;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
+
 }
 
 .send > p{
@@ -139,10 +149,11 @@ body {
     flex-direction: row;
     justify-content: space-evenly;
 }
-.send>div >button:hover {
-    cursor:pointer
+@media (hover: hover) {
+	.send>div >button:hover {
+	    cursor:pointer
+	}
 }
-
 
 .cart {
     margin-top: 6%;
@@ -170,7 +181,7 @@ body {
     margin:0 auto;
     border-radius: 4%/6%;
     background-color: rgb(255, 255, 255);
-    max-height: 40vh;
+    height: 40vh;
     overflow-y: scroll;
     padding-right: 10px;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
@@ -209,8 +220,10 @@ body {
     font-weight: bolder;
     cursor: pointer;
 }
-.ticket > div> button:hover {
-    background-color: rgba(250, 128, 114, 0.7);
+@media (hover: hover) {
+	.ticket > div> button:hover {
+	    background-color: rgba(250, 128, 114, 0.7);
+	}
 }
 
 
@@ -241,13 +254,13 @@ body {
     background:linear-gradient(180deg, #ffffff99 50%,#012784b3 50%), linear-gradient(90deg, #ffffff 50%,#012784 0%);
     background-size: 3rem 3rem;
 }
-
-.meals-grid > li >button:hover {
-    transform: scale(1.06);
-    background-color: #eef7ff;
-    cursor: pointer;
+@media (hover: hover){
+	.meals-grid > li >button:hover {
+	    transform: scale(1.06);
+	    background-color: #eef7ff;
+	    cursor: pointer;
+	}
 }
-
 .mensaje-exito {
   background-color: #d4edda; 
   color: #155724; 
@@ -271,7 +284,11 @@ body {
     margin-top: 2%;
     
 }
-
+.formulario > button{
+    display:block;
+    margin: 0 auto;
+    margin-top:2vh;
+}
 .formulario > form > div{
     width: 25%;
     margin: 0 auto;
@@ -294,6 +311,7 @@ body {
     border-radius: 16px /10px;
     margin: 0 auto;
     text-align: center;
+
 }
 .formulario > form >button{
     margin: 0 auto;
@@ -314,6 +332,17 @@ body {
 
 .pedidos>ul>li{
     width: 20vw;
+}
+.pedido > ul >li >div{
+	display:grid;
+	grid-template-columns: repeat(2, 0.5fr);
+}
+.pedido > ul > li > div >p{
+	width: 100%;
+	margin-left:auto;
+	margin-right:auto;
+	height:fit-content;
+	font-size:1.1rem;
 }
 .pedido{
     background-color: white;
@@ -336,7 +365,7 @@ body {
 .pedido >p:nth-child(2){
     width: fit-content;
 }
-.pedido >p:nth-child(3){
+.pedido >p:last-child{
     width: fit-content;
     border: 1px solid black;
 }
@@ -356,9 +385,19 @@ body {
     right:0;
     margin:0;
 }
-@media screen and (max-width: 414px){
+@media screen and (max-width: 1050px){
+	.pedido > ul > li > div >p{
+	        width: 100%;
+	        margin-left:auto;
+	        margin-right:auto;
+	        height:fit-content;
+	        font-size:0.7rem;
+	}
 	#root:has(div.pedidos){
 	    margin:0 auto;
+	}
+	#root{
+	    margin-bottom:10vh;
 	}
 	.pedidos > h2 {
 	    width:60vw;
@@ -375,6 +414,7 @@ body {
 	    height: 30vh;
 	    overflow-y: scroll;
 	    margin:0 auto;
+	    margin-bottom:5vh;
 	}
 	.pedidos {
 	    width:80vw;
@@ -421,8 +461,9 @@ body {
 	}
 	.formulario > form > div> input[type="text"], .formulario > form > div> input[type="password"]{
 	    border-radius: 16px /10px;
-    	margin: 0 auto;
-    	text-align: center;
+    	    margin: 0 auto;
+    	    text-align: center;
+	    width:70%;
 	}
 	.formulario > form >button{
     	margin: 0 auto;
@@ -467,7 +508,7 @@ body {
         scrollbar-width: thin;
         scrollbar-color: black gray;
         width: 100%;
-        height: 43vh;
+        height:37vh;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(40vw, 0.1fr));
         align-items: center;
@@ -580,10 +621,6 @@ body {
     .plate > button > p {
         font-size: 0.9rem;
         line-height: 1.3;
-    }
-    .plate:hover{
-        rotate: 0deg;
-        transition: rotate 0s;
     }
     .plate:not(:hover){
         rotate: 0deg;

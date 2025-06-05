@@ -17,20 +17,20 @@ function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado
       .then(response => response.json())
       .then(data => setMeals(data))
   }, []);
-  function añadirAlCarrito(meal) {
-    setCart(prevCart => {
-      const existente = prevCart.find(item => item.meal.id === meal.id);
-      if (existente) {
-        return prevCart.map(item =>
-          item.meal.id === meal.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        return [...prevCart, { meal, quantity: 1 }];
-      }
-    });
-  }
+  function addAlCarrito(meal){
+	  setCart(prevCart => {
+	    const existente = prevCart.find(item => item.meal.id === meal.id);
+	    if (existente) {
+	      return prevCart.map(item =>
+	        item.meal.id === meal.id
+	          ? { ...item, quantity: item.quantity + 1 }
+	          : item
+	      );
+	    } else {
+	      return [...prevCart, { meal, quantity: 1 }];
+	    }
+	  });
+	}
   function reducirCantidad(mealId) {
     setCart(prevCart =>
       prevCart
@@ -109,13 +109,13 @@ function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado
         <ul className='meals-grid'>
           {meals.map(meal => (
             <li key={meal.id}>
-              <div className='plate' onClick={() =>añadirAlCarrito(meal)} role='button' tabIndex={0} onKeyDown={(e) => {if (e.key === 'Enter')añadirAlCarrito(meal);}}>
-                <button onClick={(e) => {e.stopPropagation(); añadirAlCarrito(meal)}} >
-                  <p>{meal.name} </p> 
+              <div className='plate' onClick={() => addAlCarrito(meal)} role='button' tabIndex={0} onKeyDown={(e) => {if (e.key === 'Enter') addAlCarrito(meal);}}>
+                <button onClick={(e) => {e.stopPropagation(); addAlCarrito(meal)}} >
+                  <p>{meal.name} </p>
                   <i>{meal.price} €</i>
                 </button>
               </div>
-              
+
             </li>
           ))}
         </ul>
@@ -124,19 +124,19 @@ function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado
         <h3>Detalles del Pedido</h3>
         <ul> 
           {cart.map((item, index) => (
-            <li key={index}>
-              <div className='ticket'>
-                <div>
-                  <button onClick={() => reducirCantidad(item.meal.id)}>–</button>
-                  <p>{item.meal.name}</p>
-                </div>
-                <p>{item.quantity} x {item.meal.price} €</p>
-              </div>
-            </li>
-          ))}
+	    <li key={index}>
+	      <div className="ticket">
+	        <div>
+	          <button onClick={() => reducirCantidad(item.meal.id)}>–</button>
+	          <span>{item.quantity} x {item.meal.name}</span>
+	        </div>
+	        <span>{(item.meal.price * item.quantity).toFixed(2)} €</span>
+	      </div>
+	    </li>
+	  ))}
         </ul>
         <div className='send'>
-          <p><strong>Total:</strong> {total.toFixed(2)} €</p>
+          <p><strong>Total:</strong> {cart.reduce((acc, item) => acc + item.quantity * item.meal.price, 0).toFixed(2)} €</p>
           <div>
             <button onClick={limpiarCarrito}>Vaciar carrito</button>
             <button onClick={handleEnviarPedido}>Enviar pedido</button>
@@ -148,3 +148,4 @@ function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado
 }
 
 export default MealsList;
+

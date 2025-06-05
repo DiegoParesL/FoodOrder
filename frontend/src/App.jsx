@@ -62,7 +62,7 @@ function App() {
           Pedido enviado correctamente.
         </div>
       )}
-      {user && <p className="sesion">Sesión iniciada como: {user}</p>}
+      {user && <p className="sesion">Bienvenido {user}!</p>}
     </>
   )
   

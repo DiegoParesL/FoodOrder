@@ -45,14 +45,17 @@ function MisPedidos({ onClickMenu, user }) {
             <div key={"b" + order.id} className="pedido">
               <h3>Pedido #ID={order.id}</h3>
               <p>Fecha: {new Date(order.created_at).toLocaleString()}</p>
-              <p>Total: <i>{order.total.toFixed(2)}</i> €</p>
-              <ul>
+	      <ul>
                 {order.items.map((item, i) => (
                   <li key={i}>
-                    {item.quantity} x {item.meal_name} ({item.price} €)
+			<div>
+				<p>{item.meal_name} {item.quantity} uds.</p>
+				<p>({(item.quantity*item.price).toFixed(2)}€)</p>
+			</div>
                   </li>
                 ))}
               </ul>
+	      <p>Total: <i>{order.total.toFixed(2)}</i> €</p>
             </div>
           </li>
         ))}
