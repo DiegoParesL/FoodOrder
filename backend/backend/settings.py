@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9&cprh#4i2=5-gses7#p2u2^_rgjpgkb@s(m42b#ms=_zmexcv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dpareslopez.ieti.site', 'localhost','127.0.0.1','192.168.152.51']
 
 
 # Application definition
@@ -65,6 +65,7 @@ CSRF_COOKIE_SECURE = False
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5173",
     "http://127.0.0.1:8000",
+    "http://dpareslopez.ieti.site",
 ]
 
 ROOT_URLCONF = 'backend.urls'

@@ -238,7 +238,7 @@ body {
     margin:5px;
     padding: 30px;
     border-radius:  4px/6px;
-    background:linear-gradient(180deg, rgba(255, 255, 255, 0.6) 50%,rgba(1, 39, 132, 0.7) 50%), linear-gradient(90deg, rgb(255, 255, 255) 50%,rgb(1, 39, 132)0%);
+    background:linear-gradient(180deg, #ffffff99 50%,#012784b3 50%), linear-gradient(90deg, #ffffff 50%,#012784 0%);
     background-size: 3rem 3rem;
 }
 
@@ -269,6 +269,7 @@ body {
     font-size: 1.5rem;
     border: 2px solid black;
     margin-top: 2%;
+    
 }
 
 .formulario > form > div{
@@ -277,6 +278,7 @@ body {
     text-align: center;
     background-color: white;
     border-radius: 16px/12px;
+    padding-bottom:5vh;
 }
 .formulario > form > div > label{
     display: block;
@@ -309,6 +311,7 @@ body {
     width: 80vw;
     flex-wrap: wrap;
 }
+
 .pedidos>ul>li{
     width: 20vw;
 }
@@ -337,7 +340,101 @@ body {
     width: fit-content;
     border: 1px solid black;
 }
+.pedidos > h2{
+    width:20vw;
+    text-align:center;
+    background-color: white;
+    border: 1px solid black;
+    padding: 2%;
+    border-radius:16px/10px;
+    margin:0 auto;
+    margin-top:30px;
+}
+.sesion {
+    position:fixed;
+    top:0;
+    right:0;
+    margin:0;
+}
 @media screen and (max-width: 414px){
+	#root:has(div.pedidos){
+	    margin:0 auto;
+	}
+	.pedidos > h2 {
+	    width:60vw;
+	    margin:40px auto;
+	}
+	.pedidos> button{
+	    display:block;
+	    margin:0 auto;
+	}
+	.pedido{
+	    background-color: white;
+	    border-radius: 16px/10px;
+	    width: 70vw;
+	    height: 30vh;
+	    overflow-y: scroll;
+	    margin:0 auto;
+	}
+	.pedidos {
+	    width:80vw;
+	    margin: 0 auto;
+	}
+	.pedidos > ul {
+	    width:80vw;
+	}
+	.pedidos>ul>li{
+	    width: 70vw;
+	    margin:0 auto;
+	}
+	.pedido > ul{
+	    list-style: none;
+	}
+    	.formulario > h2 {
+	    border-radius: 15px /10px;
+	    background-color: #eef7ff;
+	    width: 60vw;
+	    margin: 0 auto;
+	    margin-bottom: 20px;
+	    text-align: center;
+	    font-size: 1.5rem;
+	    border: 2px solid black;
+	    margin-top: 12%;
+	}
+
+	.formulario > form > div{
+	    width: 70%;
+	    margin: 0 auto;
+	    text-align: center;
+	    background-color: white;
+	    border-radius: 16px/12px;
+	}
+	.formulario > form > div > label{
+	    display: block;
+	    margin-top: 10vh;
+	}
+	.formulario > form > div > button[type=submit]{
+	    margin-top: 10vh;
+	    display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
+	.formulario > form > div> input[type="text"], .formulario > form > div> input[type="password"]{
+	    border-radius: 16px /10px;
+    	margin: 0 auto;
+    	text-align: center;
+	}
+	.formulario > form >button{
+    	margin: 0 auto;
+    	display: block;
+	}
+	.formulario > button{
+	    display: flex;
+	    margin: 0 auto;
+	    margin-top: 3vh;
+	    justify-content: center;
+	    align-items: center;
+	}
     li{
         padding-left:0 !important; 
         padding-right:0 !important; 
@@ -364,14 +461,13 @@ body {
         background-color: rgba(171, 195, 255, 0.7);
     }
     .meals > button:first-child {
-        justify-content: center;
-        align-items: center;
+        margin-top: 10%;
     }
     .meals-grid {
         scrollbar-width: thin;
         scrollbar-color: black gray;
         width: 100%;
-        height: 47vh;
+        height: 43vh;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(40vw, 0.1fr));
         align-items: center;

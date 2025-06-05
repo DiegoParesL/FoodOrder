@@ -27,7 +27,7 @@ function App() {
         }, [pedidoEnviado]);
   
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/auth/yo/", {
+    fetch("/api/auth/yo/", {
       credentials: "include",
     })
       .then(res => res.json())
@@ -62,7 +62,7 @@ function App() {
           Pedido enviado correctamente.
         </div>
       )}
-      {user && <p>Sesión iniciada como: {user}</p>}
+      {user && <p className="sesion">Sesión iniciada como: {user}</p>}
     </>
   )
   

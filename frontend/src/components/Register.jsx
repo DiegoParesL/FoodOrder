@@ -12,7 +12,7 @@ function RegisterPage({ onClickMenu }) {
   const fetchCsrfToken = async () => {
     try {
       
-      const response = await fetch("http://127.0.0.1:8000/api/auth/csrf/", { 
+      const response = await fetch("/api/auth/csrf/", { 
         method: "GET",
         credentials: "include",
       });
@@ -54,7 +54,7 @@ function RegisterPage({ onClickMenu }) {
       }
     }
 
-    const response = await fetch("http://127.0.0.1:8000/api/auth/register/", {
+    const response = await fetch("/api/auth/register/", {
       credentials:'include',
       method: "POST",
       headers: {

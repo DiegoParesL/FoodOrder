@@ -13,7 +13,7 @@ function LoginPage({ onClickMenu, setUser }) {
 
   const fetchCsrfToken = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/auth/csrf/", { 
+      const response = await fetch("/api/auth/csrf/", { 
         method: "GET",
         credentials: "include",
       });
@@ -59,7 +59,7 @@ function LoginPage({ onClickMenu, setUser }) {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/auth/login/", {
+      const response = await fetch("/api/auth/login/", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -84,7 +84,7 @@ function LoginPage({ onClickMenu, setUser }) {
       setMensaje("Ocurrió un error de red. Intente de nuevo.");
     }
 
-    const res = await fetch("http://127.0.0.1:8000/api/auth/yo/", {
+    const res = await fetch("/api/auth/yo/", {
       method: "GET",
       credentials: "include"
     });

@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 function Home({ onClickMenu, onLogout,user}) {
   const handleLogout = async () => {
   try {
-    const csrfRes = await fetch("http://127.0.0.1:8000/api/auth/csrf/", {
+    const csrfRes = await fetch("/api/auth/csrf/", {
       credentials: "include",
     });
     const csrfData = await csrfRes.json();
 
-    const response = await fetch("http://127.0.0.1:8000/api/auth/logout/", {
+    const response = await fetch("/api/auth/logout/", {
       method: "POST",
       credentials: "include",
       headers: {

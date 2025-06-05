@@ -11,7 +11,7 @@ function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado
           }
         }, [pedidoEnviado]);
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/meals/meal',{
+    fetch('/api/meals/meal',{
       credentials:'include'
     })
       .then(response => response.json())
@@ -57,7 +57,7 @@ function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado
     }
 
     // Obtener token CSRF
-    const csrfRes = await fetch("http://127.0.0.1:8000/api/auth/csrf/", {
+    const csrfRes = await fetch("/api/auth/csrf/", {
       credentials: "include",
     });
     const csrfData = await csrfRes.json();
@@ -72,7 +72,7 @@ function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado
 
 
     // Enviar a la API
-    fetch("http://127.0.0.1:8000/api/orders/order/", {
+    fetch("/api/orders/order/", {
       credentials: "include",
       method: "POST",
       headers: {
