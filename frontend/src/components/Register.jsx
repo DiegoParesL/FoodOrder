@@ -4,7 +4,8 @@ function RegisterPage({ onClickMenu }) {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [mensaje, setMensaje] = useState("");
-  const [csrfToken, setToken] = useState(null); 
+  const [csrfToken, setToken] = useState(null);
+  const [confirmar, setConfirmar] = useState(''); 
 
   useEffect(() => {
       fetchCsrfToken();
@@ -44,40 +45,43 @@ function RegisterPage({ onClickMenu }) {
   };
   const handleRegister = async (e) => {
     e.preventDefault();
-    let currentCsrfToken = csrfToken;
-    if (!currentCsrfToken) {
-      setMensaje("Token de seguridad no cargado. Intentando obtenerlo...");
-      currentCsrfToken = await fetchCsrfToken();
-      if (!currentCsrfToken) {
-        setMensaje("No se pudo obtener el token de seguridad. Intente de nuevo.");
-        return;
-      }
-    }
+    if (password !== confirmar) {
+      alert('Las contraseñas no coinciden');
+    }else{
+	    let currentCsrfToken = csrfToken;
+	    if (!currentCsrfToken) {
+	      setMensaje("Token de seguridad no cargado. Intentando obtenerlo...");
+	      currentCsrfToken = await fetchCsrfToken();
+	      if (!currentCsrfToken) {
+	        setMensaje("No se pudo obtener el token de seguridad. Intente de nuevo.");
+	        return;
+	      }
+	    }
 
-    const response = await fetch("/api/auth/register/", {
-      credentials:'include',
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": currentCsrfToken, 
-        },
-      body: JSON.stringify({ username:user, password:password })
-    });
+	    const response = await fetch("/api/auth/register/", {
+	      credentials:'include',
+	      method: "POST",
+	      headers: {
+	          "Content-Type": "application/json",
+	          "X-CSRFToken": currentCsrfToken, 
+	        },
+	      body: JSON.stringify({ username:user, password:password })
+	    });
 
 
-    
-    const data = await response.json();
+	    
+	    const data = await response.json();
 
-    if (data.success) {
-      setMensaje("Usuario registrado correctamente. Ahora inicia sesión.");
-      setUser("");
-      setPassword("");
-      setTimeout(() => onClickMenu("login"), 2000);
-    } else {
-      setMensaje(data.message || "Error en el registro.");
-    }
-  };
-
+	    if (data.success) {
+	      setMensaje("Usuario registrado correctamente. Ahora inicia sesión.");
+	      setUser("");
+	      setPassword("");
+	      setTimeout(() => onClickMenu("login"), 2000);
+	    } else {
+	      setMensaje(data.message || "Error en el registro.");
+	    }
+	  };
+     }
   return (
     <div className="formulario">
       <h2>Registro</h2>
@@ -93,13 +97,22 @@ function RegisterPage({ onClickMenu }) {
             onChange={(e) => setUser(e.target.value)}
             required
           />
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Contraseña</label>
           <input
             id="password"
             type="password"
             placeholder="Contraseña"
             autoComplete="new-password"
             onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+	  <label htmlFor="password">Confirmar Contraseña</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Contraseña"
+            autoComplete="new-password"
+            onChange={(e) => setConfirmar(e.target.value)}
             required
           />
           <button type="submit">Registrarse</button>

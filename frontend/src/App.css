@@ -324,7 +324,7 @@ body {
 .pedidos > ul{
     list-style: none;
     display: flex;
-    flex-direction: row;
+    flex-direction:row;
     gap: 10vw;
     width: 80vw;
     flex-wrap: wrap;
@@ -491,6 +491,7 @@ body {
         align-items: center;
         gap: 10px;
         background-color: rgba(1, 39, 132, 0.7);
+	height:60vh;
     }
     
     .meals > h2{
@@ -532,10 +533,9 @@ body {
         flex-direction: column;
         width: 100vw;
         border-radius: 4px /10px;
-        position: absolute;
         top: calc(100% - 35vh);
         background-color: rgba(171, 195, 255, 0.7);
-        height: 35vh;
+        height: 30vh;
         align-items: flex-start;
         margin-top: 0;
         border-radius: 0;

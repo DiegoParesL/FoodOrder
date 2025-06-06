@@ -40,7 +40,7 @@ function MisPedidos({ onClickMenu, user }) {
       {error && <p>{error}</p>}
       {!error && pedidos.length === 0 && <p>No hay pedidos aún.</p>}
       <ul>
-        {pedidos.map(order => (
+        {pedidos.slice().reverse().map(order => (
           <li key={"a" + order.id}>
             <div key={"b" + order.id} className="pedido">
               <h3>Pedido #ID={order.id}</h3>

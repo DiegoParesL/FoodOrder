@@ -17,7 +17,11 @@ function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado
       .then(response => response.json())
       .then(data => setMeals(data))
   }, []);
-  function addAlCarrito(meal){
+  
+	function sendToPedidos(){
+	
+	}
+	function addAlCarrito(meal){
 	  setCart(prevCart => {
 	    const existente = prevCart.find(item => item.meal.id === meal.id);
 	    if (existente) {
@@ -84,6 +88,10 @@ function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado
       .then(response => {
         if (response.ok) {
           setPedidoEnviado(true);
+            setTimeout(() => {
+              onClickMenu("pedidos");
+            }, 1000);
+	  
           setCart([]);
         } else {
           throw new Error("Error al enviar pedido");
