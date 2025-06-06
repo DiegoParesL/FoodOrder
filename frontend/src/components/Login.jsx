@@ -74,7 +74,7 @@ function LoginPage({ onClickMenu, setUser }) {
       if (response.ok) {
         setMensaje("Login exitoso!");
         setUser(username); 
-        onClickMenu("home"); 
+        onClickMenu("meals"); 
       } else {
         setMensaje(`Error de login: ${data.message || 'Credenciales incorrectas'}`);
         console.error("Error en el login:", data);
