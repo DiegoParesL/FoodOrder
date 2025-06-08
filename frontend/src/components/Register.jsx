@@ -74,8 +74,6 @@ function RegisterPage({ onClickMenu }) {
 
 	    if (data.success) {
 	      setMensaje("Usuario registrado correctamente. Ahora inicia sesión.");
-	      setUser("");
-	      setPassword("");
 	      setTimeout(() => onClickMenu("login"), 2000);
 	    } else {
 	      setMensaje(data.message || "Error en el registro.");
@@ -97,18 +95,18 @@ function RegisterPage({ onClickMenu }) {
             onChange={(e) => setUser(e.target.value)}
             required
           />
-          <label htmlFor="password">Contraseña</label>
+          <label htmlFor="password1">Contraseña</label>
           <input
-            id="password"
+            id="password1"
             type="password"
             placeholder="Contraseña"
             autoComplete="new-password"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-	  <label htmlFor="password">Confirmar Contraseña</label>
+	  <label htmlFor="password2">Confirmar Contraseña</label>
           <input
-            id="password"
+            id="password2"
             type="password"
             placeholder="Contraseña"
             autoComplete="new-password"

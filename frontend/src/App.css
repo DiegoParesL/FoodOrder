@@ -535,7 +535,7 @@ body {
         border-radius: 4px /10px;
         top: calc(100% - 35vh);
         background-color: rgba(171, 195, 255, 0.7);
-        height: 30vh;
+        height: calc(30vh + 3%);
         align-items: flex-start;
         margin-top: 0;
         border-radius: 0;
@@ -554,7 +554,7 @@ body {
     }
     .cart > ul{
         
-        height: 15vh;
+        height: 9vh;
         width: 100%;
         overflow-y: scroll;
         scrollbar-width: thin;
