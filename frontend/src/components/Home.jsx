@@ -33,12 +33,11 @@ function Home({ onClickMenu, onLogout,user}) {
   return (
     <div className="home">
       <h1>Menú principal</h1>
-      <button onClick={() => onClickMenu("meals")}>Lista de Comidas</button>
-      <button onClick={() => onClickMenu("login")}>Iniciar sesión</button>
-      <button onClick={() => onClickMenu("register")}>Registrarse</button>
-      <button onClick={() => onClickMenu("pedidos")}>Mis pedidos</button>
-      <button onClick={handleLogout}>Cerrar sesión</button>
-      
+      {user && <button onClick={() => onClickMenu("meals")}>Lista de Comidas</button>}
+      {!user && <button onClick={() => onClickMenu("login")}>Iniciar sesión</button>}
+      {!user && <button onClick={() => onClickMenu("register")}>Registrarse</button>}
+      {user && <button onClick={() => onClickMenu("pedidos")}>Mis pedidos</button>}
+      {user && <button onClick={handleLogout}>Cerrar sesión</button>}      
     </div>
   );
 }
