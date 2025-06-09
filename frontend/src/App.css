@@ -1,7 +1,16 @@
 /* estilos Generales*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 *{
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    font-weight:400;
     font-size: 1.1rem;
     user-select: none;
+    
 }
 .plate > button > p{
     z-index: 10;
@@ -34,7 +43,7 @@ body {
 .home > h1{
     padding: 10px 3vw;
     background-color: white;
-    margin-top: 3vh;
+    margin-top: 4.2vh;
     border-radius: 16px / 10px;
     border: 1px solid black;
     font-size:1.5rem;
@@ -368,6 +377,8 @@ body {
 .pedido >p:last-child{
     width: fit-content;
     border: 1px solid black;
+    margin-left:auto;
+    margin-right:10px;
 }
 .pedidos > h2{
     width:20vw;
@@ -384,6 +395,7 @@ body {
     top:0;
     right:0;
     margin:0;
+    padding-right:1.2vw;
 }
 @media screen and (max-width: 1050px){
 	.pedido > ul > li > div >p{
@@ -415,6 +427,9 @@ body {
 	    overflow-y: scroll;
 	    margin:0 auto;
 	    margin-bottom:5vh;
+	}
+	.pedido>p:nth-child(2){
+	    margin: 0 auto;
 	}
 	.pedidos {
 	    width:80vw;
@@ -554,7 +569,7 @@ body {
     }
     .cart > ul{
         
-        height: 9vh;
+        height: 17.1vh;
         width: 100%;
         overflow-y: scroll;
         scrollbar-width: thin;
@@ -597,8 +612,14 @@ body {
         background-color: rgba(171, 195, 255, 0.7);
         margin-right: 0;
     }
+    .send > div{
+	margin-top:0;
+	align-items: center;
+    }
     .send >div > button{
         justify-content: space-between;
+	width:28vw;
+	height:55px;
     }
     body{
         margin: 0 !important;
@@ -635,7 +656,7 @@ body {
         bottom: 0; 
         width: 91% ;
     }
-    .sesion{
+    .sesion{ 
 	position:absolute;
     }
 }
