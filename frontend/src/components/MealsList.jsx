@@ -144,10 +144,10 @@ function MealsList({ onClickMenu, cart, setCart, pedidoEnviado, setPedidoEnviado
 	  ))}
         </ul>
         <div className='send'>
-          <p><strong>Total:</strong> {cart.reduce((acc, item) => acc + item.quantity * item.meal.price, 0).toFixed(2)} €</p>
           <div>
             <button onClick={limpiarCarrito}>Vaciar carrito</button>
             <button onClick={handleEnviarPedido}>Enviar pedido</button>
+	    <p><strong>Total:</strong> {cart.reduce((acc, item) => acc + item.quantity * item.meal.price, 0).toFixed(2)} €</p>
           </div>
         </div>
       </div>
