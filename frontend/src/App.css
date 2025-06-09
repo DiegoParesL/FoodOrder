@@ -635,6 +635,9 @@ body {
         bottom: 0; 
         width: 91% ;
     }
+    .sesion{
+	position:absolute;
+    }
 }
 
 
